@@ -1,0 +1,31 @@
+.btn {
+    width: 315px;
+    height: 48px;
+    border-radius: 50px;
+    font-weight: 400;
+    border: 1px solid transparent;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: black;   
+    color: white;
+
+    &:disabled {
+        background-color: white;
+        color: rgba(0, 0, 0, 0.5);
+        pointer-events: none;
+    }
+}
+
+.btn-secondary {
+    background-color: rgb(255, 255, 255);   
+    color: #000;
+    border: 1px solid #585858;
+
+    &:disabled {
+        border: 1px solid rgba(88, 88, 88, 0.5);
+        color: rgba(0, 0, 0, 0.5);
+        pointer-events: none;
+    }
+}

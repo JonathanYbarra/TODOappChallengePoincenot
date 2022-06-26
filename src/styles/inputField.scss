@@ -1,0 +1,17 @@
+.input-field {
+    background-color: transparent;
+    border: 1px solid transparent;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 28px;
+    display: flex;
+    align-items: flex-end;
+    font-feature-settings: "zero" on;
+    color: #000000;
+    width: 100%;
+
+    & ::placeholder {
+        color: #b5b5b5;
+    }
+}

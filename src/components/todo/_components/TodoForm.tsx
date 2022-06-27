@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { addNewTodoFetch } from './../../../store/slices/todoSlice';
+import { AddNewTodo } from '../../../api/apiTodo';
 // Components
 import { InputFied } from '../../InputFied';
 import { Button } from '../../Button';
@@ -22,8 +22,8 @@ export const TodoForm = () => {
         validateInputs(["message"]);
     }, [validateInputs, inputValues]);
 
-    const addNewTodo = () => {
-        dispatch(addNewTodoFetch({ userId: auth.user, todo: inputValues }));
+    const addTodo = () => {
+        dispatch(AddNewTodo({ userId: auth.user, todo: inputValues }));
         resetForm();
     };
 
@@ -32,7 +32,7 @@ export const TodoForm = () => {
             <div className="form-container">
                 <InputFied placeholder="Escribí un item" value={inputValues.message} name="message" onchange={handleInputChange} />
                 <TodoListCard />
-                <Button className="btn-primary" disabled={disabledSubmit} onClick={addNewTodo}>Agregar</Button>
+                <Button className="btn-primary btn-block" disabled={disabledSubmit} onClick={addTodo}>Agregar</Button>
             </div>
         </>
     )

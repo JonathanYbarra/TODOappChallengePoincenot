@@ -1,6 +1,5 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
-import { BACKEND_URL_CREATE_USER } from './../../constans/backend';
+import { createSlice } from '@reduxjs/toolkit';
+import { CreateUser } from './../../api/apiAuth';
 
 interface AuthState {
   isLoggedIn: boolean;
@@ -16,17 +15,6 @@ const initialState: AuthState = {
   error: null,
 };
 
-export const fetchUserData: any = createAsyncThunk(
-  'auth/fetchUser',
-  async () => {
-    try {
-      const { data } = await axios.get(BACKEND_URL_CREATE_USER);
-      return data;
-    } catch (e: any) {
-      throw Error(e);
-    }
-  }
-);
 
 const authSlice = createSlice({
   name: 'auth',
@@ -35,16 +23,16 @@ const authSlice = createSlice({
 
   },
   extraReducers: {
-    [fetchUserData.pending]: (state) => {
+    [CreateUser.pending]: (state) => {
       state.loading = true;
       state.error = null;
     },
-    [fetchUserData.fulfilled]: (state, action) => {
+    [CreateUser.fulfilled]: (state, action) => {
       state.user = action.payload;
       state.loading = false;
       state.isLoggedIn = true;
     },
-    [fetchUserData.rejected]: (state, action) => {
+    [CreateUser.rejected]: (state, action) => {
       state.error = action.error.message;
       state.loading = false;
     },

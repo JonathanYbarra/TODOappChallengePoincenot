@@ -1,15 +1,14 @@
 import { useEffect } from "react";
 import icon from "../../assets/icons/pcnt-logo.svg";
 import { useDispatch } from "react-redux";
-import { fetchUserData } from '../../store/slices/authSlice';
+import { CreateUser } from "../../api/apiAuth";
 import { TodoForm } from './_components/TodoForm';
-
 
 export const Todos = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchUserData());
+    dispatch(CreateUser());
   }, [dispatch]);
 
   return (

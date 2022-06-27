@@ -1,9 +1,8 @@
 import { useSelector } from "react-redux";
-import { Checkbox } from './../../Checkbox';
+import { TodoItem } from './TodoItem';
 
 export const TodoListCard = () => {
     const { todoList } = useSelector((state: any) => state.todos);
-
     return (
         <>
             {
@@ -17,7 +16,7 @@ export const TodoListCard = () => {
                         <div className="todo-list-card__content">
                             {
                                 todoList.map((todo: any) =>
-                                    <Checkbox label={todo.title} key={todo.todoId} id={todo.todoId} />
+                                    <TodoItem todo={todo} key={todo.todoId} />
                                 )
                             }
                         </div>

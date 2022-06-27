@@ -1,0 +1,18 @@
+.todo-list-card {
+    background: #ffffff;
+    border-radius: 20px;
+    width: 100%;
+    padding: 17px 16px 31px 23px;
+
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &__content{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+}

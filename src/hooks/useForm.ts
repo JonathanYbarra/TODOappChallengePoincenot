@@ -4,13 +4,13 @@ export const useForm = (initialState: any = {}) => {
     const [inputValues, setInputValues] = useState(initialState);
     const [disabledSubmit, setDisabledSubmit] = useState<boolean>(false);
 
-    const reset = () => {
+    const resetForm = () => {
         setInputValues(initialState);
     }
 
-    const validateInputs = (inputs: any) => {
-        const disabled = Object.keys(inputs).every((input: any) => inputs[input].length < 1);
-        setDisabledSubmit(disabled)
+    const validateInputs = (inputs: string[]) => {
+        const disabled = inputs.every((input: string) => inputValues[input].length < 1);
+        setDisabledSubmit(disabled);
     }
 
     const handleInputChange = ({ target }: any) => {
@@ -20,5 +20,5 @@ export const useForm = (initialState: any = {}) => {
         });
     }
 
-    return { inputValues, handleInputChange, reset, validateInputs, disabledSubmit };
+    return { inputValues, handleInputChange, resetForm, validateInputs, disabledSubmit };
 }

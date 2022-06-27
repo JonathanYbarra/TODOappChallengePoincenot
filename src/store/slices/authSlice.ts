@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { BACKEND_URL_CREATE_USER } from './../../constans/backend';
 
 interface AuthState {
   isLoggedIn: boolean;
@@ -19,7 +20,7 @@ export const fetchUserData: any = createAsyncThunk(
   'auth/fetchUser',
   async () => {
     try {
-      const { data } = await axios.get('https://api-3sxs63jhua-uc.a.run.app/v1/userId');
+      const { data } = await axios.get(BACKEND_URL_CREATE_USER);
       return data;
     } catch (e: any) {
       throw Error(e);

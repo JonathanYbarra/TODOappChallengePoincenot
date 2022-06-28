@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { AddNewTodo, DeleteTodo, GetTodos, GetTodosCompleted } from '../../api/apiTodo';
+import { AddNewTodo, DeleteTodo, GetTodos, GetTodosCompleted, ResetTodo } from '../../api/apiTodo';
 import { SetCompletionTodo } from './../../api/apiTodo';
 
 interface TodoItem {
@@ -24,15 +24,6 @@ const todosSlice = createSlice({
     name: 'todos',
     initialState,
     reducers: {
-        // ALLTODOS(state) {
-        //     state.todoList = state.todoList;
-        // },
-        // UNCOMPLETEDTODOS(state) {
-        //     state.todoList = state.todoList.filter((todo: TodoItem) => !todo.completed);
-        // },
-        // COMPLETEDTODOS(state) {
-        //     state.todoList = state.todoList.filter((todo: TodoItem) => todo.completed);
-        // },
         FILTERTODOS(state, action) {
             switch (action.payload) {
                 case "COMPLETEDTODOS":
@@ -108,6 +99,19 @@ const todosSlice = createSlice({
             state.todoList = action.payload;
         },
         [GetTodosCompleted.rejected]: (state, action) => {
+            state.error = action.error.message;
+            state.loading = false;
+        },
+        //ResetTodos
+        [ResetTodo.pending]: (state) => {
+            state.loading = true;
+            state.error = null;
+        },
+        [ResetTodo.fulfilled]: (state, action) => {
+            state.loading = false;
+            state.todoList = [];
+        },
+        [ResetTodo.rejected]: (state, action) => {
             state.error = action.error.message;
             state.loading = false;
         },

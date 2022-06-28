@@ -62,3 +62,12 @@ export const GetTodosCompleted: any = createAsyncThunk('todo/GetTodosCompleted',
         throw Error(e);
     }
 });
+
+export const ResetTodo: any = createAsyncThunk('todo/ReseTodo', async ({ userId }: any) => {
+    try {
+        const { data } = await axios.delete(`${BACKEND_URL_TODO}/${userId}/reset`);
+        return data;
+    } catch (e: any) {
+        throw Error(e);
+    }
+});

@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { GetTodos, GetTodosCompleted } from '../../../api/apiTodo';
-import { selectAllTodos } from './../../../store/slices/todoSlice';
 
 type toggleParam = "ALL" | "COMPLETED" | "UNCOMPLETED";
 
@@ -13,7 +12,6 @@ type Props = {
 
 export const TodoOptions = ({ showFilter }: Props) => {
     const { auth } = useSelector((state: any) => state);
-    const todos = useSelector(selectAllTodos);
 
     const [filterOptions, setFilterOptions] = useState("");
     const dispatch = useDispatch();

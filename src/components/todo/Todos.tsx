@@ -1,11 +1,14 @@
 import { useEffect } from "react";
 import icon from "../../assets/icons/pcnt-logo.svg";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { CreateUser } from "../../api/apiAuth";
 import { TodoForm } from './_components/TodoForm';
+import { Loader } from "../Loader";
+import { selectAllTodos } from '../../store/slices/todoSlice';
 
 export const Todos = () => {
   const dispatch = useDispatch();
+  const todos = useSelector(selectAllTodos);
 
   useEffect(() => {
     dispatch(CreateUser());
@@ -22,6 +25,8 @@ export const Todos = () => {
       <h5 className="subtitle-questions">¿Qué cosas tenés que terminar hoy?</h5>
 
       <TodoForm />
+
+      <Loader isLoading={todos.loading} />
     </div>
   )
 }

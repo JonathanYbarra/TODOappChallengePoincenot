@@ -1,11 +1,15 @@
 @import "./variables.scss";
 
 // Components
+@import "./_components/Todos.scss";
+// Common components
+@import "./animations.scss";
 @import "./button.scss";
 @import "./checkbox.scss";
-@import "./inputField.scss";
 @import "./form.scss";
-@import "./_components/Todos.scss";
+@import "./loader.scss";
+@import "./modal.scss";
+@import "./inputField.scss";
 
 * {
     &:focus-visible,

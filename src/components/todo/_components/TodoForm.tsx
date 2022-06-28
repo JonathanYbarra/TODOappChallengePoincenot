@@ -22,18 +22,25 @@ export const TodoForm = () => {
         validateInputs(["message"]);
     }, [validateInputs, inputValues]);
 
-    const addTodo = () => {
+    const addTodo = (e: any) => {
+        e.preventDefault();
         dispatch(AddNewTodo({ userId: auth.user, todo: inputValues }));
         resetForm();
     };
 
     return (
         <>
-            <div className="form-container">
+            <form className="form-container" onSubmit={addTodo} autoComplete="off">
                 <InputFied placeholder="Escribí un item" value={inputValues.message} name="message" onchange={handleInputChange} />
                 <TodoListCard />
-                <Button className="btn-primary btn-block" disabled={disabledSubmit} onClick={addTodo}>Agregar</Button>
-            </div>
+                <Button
+                    className="btn-primary btn-block"
+                    disabled={disabledSubmit}
+                    type="submit"
+                >
+                    Agregar
+                </Button>
+            </form>
         </>
     )
 }

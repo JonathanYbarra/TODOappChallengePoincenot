@@ -37,7 +37,7 @@ export const TodoItem = ({ todo }: Props) => {
                 label={todo.title}
                 onChange={updateTodo}
             />
-            <button onClick={deleteTodo}>Delete</button>
+            <button type="button" onClick={deleteTodo}>Delete</button>
         </div>
     )
 }

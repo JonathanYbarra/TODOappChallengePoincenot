@@ -11,16 +11,16 @@ type Props = {
 }
 
 export const TodoOptions = ({ showFilter }: Props) => {
-    const { auth } = useSelector((state: any) => state);
+    const { user } = useSelector((state: any) => state.auth);
 
     const [filterOptions, setFilterOptions] = useState("");
     const dispatch = useDispatch();
 
     useEffect(() => {
-        filterOptions === "ALL" && dispatch(GetTodos({ userId: auth.user, state: "ALL" }));
-        filterOptions === "UNCOMPLETED" && dispatch(GetTodosCompleted({ userId: auth.user, completed: false }));
-        filterOptions === "COMPLETED" && dispatch(GetTodosCompleted({ userId: auth.user, completed: true }));
-    }, [filterOptions, dispatch, auth])
+        filterOptions === "ALL" && dispatch(GetTodos({ userId: user, state: "ALL" }));
+        filterOptions === "UNCOMPLETED" && dispatch(GetTodosCompleted({ userId: user, completed: false }));
+        filterOptions === "COMPLETED" && dispatch(GetTodosCompleted({ userId: user, completed: true }));
+    }, [filterOptions, dispatch, user])
 
     const toggleFilter = (option: toggleParam) => {
         setFilterOptions(option);

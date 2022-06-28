@@ -41,11 +41,11 @@ export const TodoListCard = () => {
                         <div className="todo-list-card__header">
                             <div className="todo-list-card__header__title">
                                 <h2>To do list</h2>
-                                <button className='button-reset' onClick={() => setOpenModal(true)}>
+                                <button className='button-reset' type="button" onClick={() => setOpenModal(true)}>
                                     <img src={resetList} alt="Reset List" />
                                 </button>
                             </div>
-                            <button className="todo-list-card__header__options" onClick={() => setShowFilter(!showFilter)}>
+                            <button type="button" className="todo-list-card__header__options" onClick={() => setShowFilter(!showFilter)}>
                                 <span>Todos</span>
                                 <img src={filter} alt="filter" />
 

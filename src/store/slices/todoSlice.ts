@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { AddNewTodo, DeleteTodo } from '../../api/apiTodo';
+import { AddNewTodo, DeleteTodo, GetTodos, GetTodosCompleted } from '../../api/apiTodo';
 import { SetCompletionTodo } from './../../api/apiTodo';
 
 interface TodoItem {
@@ -23,7 +23,28 @@ const initialState: TodoState = {
 const todosSlice = createSlice({
     name: 'todos',
     initialState,
-    reducers: {},
+    reducers: {
+        // ALLTODOS(state) {
+        //     state.todoList = state.todoList;
+        // },
+        // UNCOMPLETEDTODOS(state) {
+        //     state.todoList = state.todoList.filter((todo: TodoItem) => !todo.completed);
+        // },
+        // COMPLETEDTODOS(state) {
+        //     state.todoList = state.todoList.filter((todo: TodoItem) => todo.completed);
+        // },
+        FILTERTODOS(state, action) {
+            switch (action.payload) {
+                case "COMPLETEDTODOS":
+                    state.todoList = state.todoList.filter((todo: TodoItem) => todo.completed);
+                    break;
+                case "UNCOMPLETEDTODOS":
+                    state.todoList = state.todoList.filter((todo: TodoItem) => !todo.completed);
+                    break;
+            }
+
+        },
+    },
     extraReducers: {
         // AddTodo
         [AddNewTodo.pending]: (state) => {
@@ -65,9 +86,34 @@ const todosSlice = createSlice({
             state.error = action.error.message;
             state.loading = false;
         },
+        // FilterTodo
+        [GetTodos.pending]: (state) => {
+            state.loading = true;
+            state.error = null;
+        },
+        [GetTodos.fulfilled]: (state, action) => {
+            state.loading = false;
+            state.todoList = action.payload;
+        },
+        [GetTodos.rejected]: (state, action) => {
+            state.error = action.error.message;
+            state.loading = false;
+        },
+        [GetTodosCompleted.pending]: (state) => {
+            state.loading = true;
+            state.error = null;
+        },
+        [GetTodosCompleted.fulfilled]: (state, action) => {
+            state.loading = false;
+            state.todoList = action.payload;
+        },
+        [GetTodosCompleted.rejected]: (state, action) => {
+            state.error = action.error.message;
+            state.loading = false;
+        },
     }
 });
 
 export const selectAllTodos = (state: any) => state.todos;
-
+export const { FILTERTODOS } = todosSlice.actions;
 export default todosSlice.reducer;

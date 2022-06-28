@@ -38,3 +38,27 @@ export const SetCompletionTodo: any = createAsyncThunk('todo/SetCompletionTodo',
         throw Error(e);
     }
 });
+
+export const GetTodos: any = createAsyncThunk('todo/GetTodos', async ({ userId }: { userId: string }) => {
+    try {
+        const { data } = await axios.get(`${BACKEND_URL_TODO}/${userId}`);
+        const newData = data.map((todo: any) => {
+            return { ...todo, todoId: todo.id }
+        });
+        return newData;
+    } catch (e: any) {
+        throw Error(e);
+    }
+});
+
+export const GetTodosCompleted: any = createAsyncThunk('todo/GetTodosCompleted', async ({ userId, completed }: { userId: string, completed: boolean }) => {
+    try {
+        const { data } = await axios.get(`${BACKEND_URL_TODO}/${userId}/${completed}`);
+        const newData = data.map((todo: any) => {
+            return { ...todo, todoId: todo.id }
+        });
+        return newData;
+    } catch (e: any) {
+        throw Error(e);
+    }
+});

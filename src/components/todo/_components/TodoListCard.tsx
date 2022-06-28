@@ -1,8 +1,12 @@
 import { useSelector } from "react-redux";
 import { TodoItem } from './TodoItem';
+import filter from "../../../assets/icons/filter.svg";
+import { TodoOptions } from './TodoOptions';
+import { useState } from 'react';
 
 export const TodoListCard = () => {
     const { todoList } = useSelector((state: any) => state.todos);
+    const [showFilter, setShowFilter] = useState(false);
     return (
         <>
             {
@@ -10,7 +14,13 @@ export const TodoListCard = () => {
                     <div className="todo-list-card">
                         <div className="todo-list-card__header">
                             <h2>To do list</h2>
-                            <span>Todos</span>
+                            <button className="todo-list-card__header__options" onClick={() => setShowFilter(!showFilter)}>
+                                <span>Todos</span>
+                                <img src={filter} alt="filter" />
+
+                                <TodoOptions showFilter={showFilter} />
+                            </button>
+
                         </div>
 
                         <div className="todo-list-card__content">

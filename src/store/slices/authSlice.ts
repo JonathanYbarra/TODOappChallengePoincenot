@@ -19,9 +19,7 @@ const initialState: AuthState = {
 const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {
-
-  },
+  reducers: {},
   extraReducers: {
     [CreateUser.pending]: (state) => {
       state.loading = true;
